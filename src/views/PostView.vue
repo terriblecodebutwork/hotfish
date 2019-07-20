@@ -9,7 +9,7 @@
               @change="onApiEndpointChange"
               :rules="[rules.required, rules.isApiEndpoint]"
               label="API endpoint of your bitquery"
-              placeholder="https://genesis.bitdb.network/q/1FnauZ9aUH2Bex6JzdcV4eNX7oLSSEbxtN/ewogICJ2IjogMywKICAicSI6IHsKICAgICJmaW5kIjoge30sCiAgICAibGltaXQiOiAxMAogIH0KfQ=="
+              placeholder="e.g. https://genesis.bitdb.network/q/1FnauZ9aUH2Bex6JzdcV4eNX7oLSSEbxtN/ewogICJ2IjogMywKICAicSI6IHsKICAgICJmaW5kIjoge30sCiAgICAibGltaXQiOiAxMAogIH0KfQ=="
             ></v-text-field>
           </v-flex>
 
@@ -21,7 +21,7 @@
               @input="onNameChange"
               maxlength="40"
               label="name of your bitquery"
-              placeholder="WeatherSV"
+              placeholder="e.g. 10 latest transactions"
             ></v-text-field>
           </v-flex>
 
