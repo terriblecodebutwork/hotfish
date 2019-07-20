@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import PostView from './views/PostView.vue'
+import QueryView from './views/QueryView.vue'
 
 Vue.use(Router)
 
@@ -12,6 +14,17 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: "/post",
+      name: 'post',
+      component: PostView
+    },
+    {
+      path: "/query/:base64",
+      name: 'query',
+      props: true,
+      component: QueryView
     },
     {
       path: '/about',

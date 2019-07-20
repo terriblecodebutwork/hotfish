@@ -1,13 +1,15 @@
 <template>
-  <Poster />
+  <div>Home</div>
+  <!-- <Poster /> -->
 </template>
 
 <script>
-  import Poster from '@/components/Poster.vue'
+// import Poster from '@/components/Poster.vue'
 
-  export default {
-    components: {
-      Poster
-    }
+export default {
+  components: {
+    // Poster
   }
+};
 </script>
+
