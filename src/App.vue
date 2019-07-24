@@ -9,7 +9,7 @@
       <v-spacer></v-spacer>
 
       <router-link to="/post">
-        <v-btn>POST</v-btn>
+        <v-btn color="grey darken-3">POST</v-btn>
       </router-link>
     </v-toolbar>
 

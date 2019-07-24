@@ -21,7 +21,9 @@ const Base64 = x => {
 
 const buildOutputs = (msgs, paySatoshi) => {
   let msgs2 = msgs.map(x => Buffer.from(x).toString('hex'));
+  msgs2.unshift(Buffer.from('1JowLDneqk8nMcHhQ6xaJMmo11izSYpxjt').toString('hex'))
   msgs2.unshift("OP_RETURN");
+  console.log(msgs2)
   return [
     {
       amount: 0,

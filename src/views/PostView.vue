@@ -49,7 +49,7 @@
             v-if="!!name"
             label="POST"
             listen="postParams"
-            paySatoshi="5000"
+            paySatoshi="10000"
           />
         </v-layout>
       </v-container>

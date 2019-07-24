@@ -1,5 +1,10 @@
 # space
 
+- [x] post bitquery
+- [ ] list bitquery
+- [ ] tip bitquery
+- [ ] search bitquery
+
 ## Project setup
 ```
 yarn install
