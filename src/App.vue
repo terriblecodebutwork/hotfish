@@ -28,11 +28,16 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .white {
   color: white;
 }
 a {
   text-decoration: none;
+}
+
+pre {
+  font-size: larger;
+  font-weight: bolder;
 }
 </style>

@@ -21,7 +21,7 @@ export default new Router({
       component: PostView
     },
     {
-      path: "/query/:base64",
+      path: "/query/:title/:query",
       name: 'query',
       props: true,
       component: QueryView

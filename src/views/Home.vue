@@ -8,7 +8,7 @@
     <v-layout wrap>
       <v-flex v-for="(item, index) in wholeResponse" :key="index" mb-4>
           <v-btn>
-            <v-card-text @click="viewContent(item.txid)" class="headline font-weight-bold">
+            <v-card-text @click="viewContent(item.title, item.query)" class="headline font-weight-bold">
               <span>*</span>
               {{item.title}}
             </v-card-text>
@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import { async } from "q";
 const QUERY = {
   "v": 3,
   "q": {
@@ -56,9 +55,10 @@ export default {
     b64ToJSONString(b) {
       return JSON.parse(atob(b));
     },
-    viewContent(txid) {
-      console.log(txid);
-      this.$router.push("/query/" + txid);
+    viewContent(title, query) {
+      console.log(title);
+      console.log(query)
+      this.$router.push("/query/" + title + "/" + query);
     }
   },
   data() {

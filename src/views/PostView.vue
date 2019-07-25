@@ -25,17 +25,6 @@
             ></v-text-field>
           </v-flex>
 
-          <!-- <v-flex xs12 sm6 md3>
-            <v-text-field
-              v-model="author"
-              :rules="[rules.required]"
-              counter
-              maxlength="20"
-              label="who are you"
-              placeholder="Simona"
-            ></v-text-field>
-          </v-flex>-->
-
           <v-flex xs12>
             <v-card color="teal lighten-3" class="white--text">
               <v-card-title primary-title>
