@@ -5,7 +5,7 @@
     <br />
     <textarea v-model="message" placeholder="add multiple lines" @input="onTextChange"></textarea>-->
     <MoneyButton v-bind:label="label" successMessage="success" :outputs="outputs" />
-    <p>{{Fee}} satoshis pay to bitquery.space dev</p>
+    <small>{{Fee}} satoshis to bitquery.space dev</small>
   </div>
 </template>
 

@@ -26,7 +26,7 @@
         </v-layout>
       </v-container>
       <MoneyButton v-bind:label="label" successMessage="success" :outputs="outputs" />
-      <p>{{ Fee }} satoshis pay to bitquery.space dev</p>
+      <small>20,000 satoshis to the poster, and {{ Fee }} satoshis to bitquery.space dev</small>
     </v-card>
   </v-app>
 </template>
