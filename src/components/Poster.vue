@@ -5,21 +5,16 @@
     <br />
     <textarea v-model="message" placeholder="add multiple lines" @input="onTextChange"></textarea>-->
     <MoneyButton v-bind:label="label" successMessage="success" :outputs="outputs" />
+    <p>{{Fee}} satoshis pay to bitquery.space dev</p>
   </div>
 </template>
 
 <script>
 import MoneyButton from "vue-money-button";
+import { Fee, Satoshi, FeeToDev} from '@/util.js'
 
-const Satoshi = x => {
-  return Number(x) / 100000000;
-};
 
-const Base64 = x => {
-  return Buffer.from(x).toString("base64");
-};
-
-const buildOutputs = (msgs, paySatoshi) => {
+const buildOutputs = (msgs) => {
   let msgs2 = msgs.map(x => Buffer.from(x).toString('hex'));
   msgs2.unshift(Buffer.from('1JowLDneqk8nMcHhQ6xaJMmo11izSYpxjt').toString('hex'))
   msgs2.unshift("OP_RETURN");
@@ -31,18 +26,15 @@ const buildOutputs = (msgs, paySatoshi) => {
       type: "Script",
       script: msgs2.join(" ")
     },
-    {
-      amount: Satoshi(paySatoshi),
-      currency: "BSV",
-      to: "1HWbpbCZHTBJmZxjFAmfHqgNjbEePkMqTW"
-    }
+    FeeToDev
   ];
 };
 
 export default {
-  props: ['listen', 'label', 'paySatoshi'],
+  props: ['listen', 'label'],
   data: function() {
     return {
+      Fee: Fee,
       outputs: [
         {
           amount: Satoshi(1000),
@@ -53,11 +45,9 @@ export default {
     };
   },
   created() {
-      this.$root.$on(this.listen, (params) => {
-        //   console.log(params)
-          let msgs = [params.name, Base64(JSON.stringify(params.apiData.queryJson))]
+      this.$root.$on(this.listen, (msgs) => {
           console.log(msgs)
-          this.outputs = buildOutputs(msgs, 1000)
+          this.outputs = buildOutputs(msgs)
       })
   },
   methods: {

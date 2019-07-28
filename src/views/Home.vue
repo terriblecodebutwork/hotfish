@@ -8,7 +8,7 @@
     <v-layout wrap>
       <v-flex v-for="(item, index) in wholeResponse" :key="index" mb-4>
           <v-btn>
-            <v-card-text @click="viewContent(item.title, item.query)" class="headline font-weight-bold">
+            <v-card-text @click="viewContent(item.title, item.query, item.from)" class="headline font-weight-bold">
               <span>*</span>
               {{item.title}}
             </v-card-text>
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+
 const QUERY = {
   "v": 3,
   "q": {
@@ -29,11 +30,12 @@ const QUERY = {
     "limit": 100,
     "project": {
       "tx.h": 1,
-      "out": 1
+      "out": 1,
+      "in": 1
     }
   },
   "r": {
-    "f": "[.[] | .txid = .tx.h | {title: .out[0].s2, query: .out[0].s3, txid: .txid} ]"
+    "f": "[.[] | {title: .out[0].s2, query: .out[0].s3, from: .in[0].e.a} ]"
   }
 };
 
@@ -55,10 +57,10 @@ export default {
     b64ToJSONString(b) {
       return JSON.parse(atob(b));
     },
-    viewContent(title, query) {
+    viewContent(title, query, from) {
       console.log(title);
       console.log(query)
-      this.$router.push("/query/" + title + "/" + query);
+      this.$router.push("/q/" + title + "/" + query + '/' + from);
     }
   },
   data() {

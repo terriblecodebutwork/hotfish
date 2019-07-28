@@ -38,7 +38,6 @@
             v-if="!!name"
             label="POST"
             listen="postParams"
-            paySatoshi="10000"
           />
         </v-layout>
       </v-container>
@@ -48,6 +47,7 @@
 
 <script>
 import Poster from "@/components/Poster.vue";
+import { Base64 } from '@/util.js'
 
 const decodeApiEndpoint = str => {
   try {
@@ -83,16 +83,12 @@ export default {
     onApiEndpointChange: function() {
       let data = decodeApiEndpoint(this.url);
       this.apiData = data;
-      this.$root.$emit("postParams", {
-        apiData: this.apiData,
-        name: this.name
-      });
+      let msgs = [this.name, Base64(JSON.stringify(this.apiData.queryJson))]
+      this.$root.$emit("postParams", msgs);
     },
     onNameChange: function() {
-      this.$root.$emit("postParams", {
-        apiData: this.apiData,
-        name: this.name
-      });
+      let msgs = [this.name, Base64(JSON.stringify(this.apiData.queryJson))]
+      this.$root.$emit("postParams", msgs);
     }
   },
   components: {

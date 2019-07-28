@@ -18,27 +18,52 @@
             <ul>
               <li>
                 <a
-                  :href="'https://genesis.bitdb.network/query/1FnauZ9aUH2Bex6JzdcV4eNX7oLSSEbxtN/' + query"
+                  :href="'https://genesis.bitdb.network/query/1FnauZ9aUH2Bex6JzdcV4eNX7oLSSEbxtN/' + decompressed_query"
                 >Genesis</a>
               </li>
             </ul>
           </div>
         </v-layout>
       </v-container>
+      <MoneyButton v-bind:label="label" successMessage="success" :outputs="outputs" />
+      <p>{{ Fee }} satoshis pay to bitquery.space dev</p>
     </v-card>
   </v-app>
 </template>
 
 <script>
+import MoneyButton from 'vue-money-button'
+import { Fee, Satoshi, FeeToDev} from '@/util.js'
+
 export default {
   data: () => {
     return {
-      json_query: ""
+      Fee: Fee,
+      label: "tip",
+      outputs: [
+        FeeToDev
+      ],
+      json_query: "",
+      decompressed_query: ""
     };
   },
   mounted() {
-    this.json_query = JSON.parse(atob(this.query));
+    console.log(FeeToDev)
+    this.decompressed_query = this.query
+    this.outputs = [
+      {
+        amount: Satoshi(20000),
+        currency: "BSV",
+        to: this.from
+      },
+      FeeToDev
+    ]
+    console.log(this.outputs)
+    this.json_query = JSON.parse(atob(this.decompressed_query));
   },
-  props: ["title", "query"]
+  props: ["title", "query", 'from'],
+  components: {
+    MoneyButton
+  }
 };
 </script>
