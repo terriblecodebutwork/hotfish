@@ -83,11 +83,11 @@ export default {
     onApiEndpointChange: function() {
       let data = decodeApiEndpoint(this.url);
       this.apiData = data;
-      let msgs = [this.name, Base64(JSON.stringify(this.apiData.queryJson))]
+      let msgs = [this.name, Base64(JSON.stringify(this.apiData.queryJson, null, 2))]
       this.$root.$emit("postParams", msgs);
     },
     onNameChange: function() {
-      let msgs = [this.name, Base64(JSON.stringify(this.apiData.queryJson))]
+      let msgs = [this.name, Base64(JSON.stringify(this.apiData.queryJson, null, 2))]
       this.$root.$emit("postParams", msgs);
     }
   },

@@ -6,36 +6,32 @@
   </v-container>
   <v-container v-else grid-list-xl>
     <v-layout wrap>
-      <v-flex v-for="(item, index) in wholeResponse" :key="index" mb-4>
-          <v-btn>
-            <v-card-text @click="viewContent(item.title, item.query, item.from)" class="headline font-weight-bold">
-              <span>*</span>
-              {{item.title}}
-            </v-card-text>
-          </v-btn>
-      </v-flex>
+      <ul v-for="(item, index) in wholeResponse" :key="index" mb-4>
+        <li>
+          <v-btn style="text-transform: none;" @click="viewContent(item.title, item.query, item.from)" text>{{item.title}}</v-btn>
+        </li>
+      </ul>
     </v-layout>
   </v-container>
 </template>
 
 <script>
-
 const QUERY = {
-  "v": 3,
-  "q": {
-    "find": {
+  v: 3,
+  q: {
+    find: {
       "out.s1": "1JowLDneqk8nMcHhQ6xaJMmo11izSYpxjt",
       "out.e.a": "1HWbpbCZHTBJmZxjFAmfHqgNjbEePkMqTW"
     },
-    "limit": 100,
-    "project": {
+    limit: 100,
+    project: {
       "tx.h": 1,
-      "out": 1,
-      "in": 1
+      out: 1,
+      in: 1
     }
   },
-  "r": {
-    "f": "[.[] | {title: .out[0].s2, query: .out[0].s3, from: .in[0].e.a} ]"
+  r: {
+    f: "[.[] | {title: .out[0].s2, query: .out[0].s3, from: .in[0].e.a} ]"
   }
 };
 
@@ -59,8 +55,8 @@ export default {
     },
     viewContent(title, query, from) {
       console.log(title);
-      console.log(query)
-      this.$router.push("/q/" + title + "/" + query + '/' + from);
+      console.log(query);
+      this.$router.push("/q/" + title + "/" + query + "/" + from);
     }
   },
   data() {
