@@ -11,19 +11,21 @@
 
 <script>
 import MoneyButton from "vue-money-button";
-import { Fee, Satoshi, FeeToDev} from '@/util.js'
+import { Fee, Satoshi, FeeToDev } from "@/util.js";
 
-
-const buildOutputs = (msgs) => {
-  let msgs2 = msgs.map(x => Buffer.from(x).toString('hex'));
-  msgs2.unshift(Buffer.from('1JowLDneqk8nMcHhQ6xaJMmo11izSYpxjt').toString('hex'))
+const buildOutputs = msgs => {
+  let msgs2 = msgs.map(x => Buffer.from(x).toString("hex"));
+  msgs2.unshift(
+    Buffer.from("1JowLDneqk8nMcHhQ6xaJMmo11izSYpxjt").toString("hex")
+  );
+  // msgs2.unshift("OP_0 OP_RETURN");
   msgs2.unshift("OP_RETURN");
-  console.log(msgs2)
+  console.log(msgs2);
   return [
     {
       amount: 0,
       currency: "BSV",
-      type: "Script",
+      type: "SCRIPT",
       script: msgs2.join(" ")
     },
     FeeToDev
@@ -31,7 +33,7 @@ const buildOutputs = (msgs) => {
 };
 
 export default {
-  props: ['listen', 'label'],
+  props: ["listen", "label"],
   data: function() {
     return {
       Fee: Fee,
@@ -40,15 +42,15 @@ export default {
           amount: Satoshi(1000),
           currency: "BSV",
           to: "1HWbpbCZHTBJmZxjFAmfHqgNjbEePkMqTW"
-        },
+        }
       ]
     };
   },
   created() {
-      this.$root.$on(this.listen, (msgs) => {
-          console.log(msgs)
-          this.outputs = buildOutputs(msgs)
-      })
+    this.$root.$on(this.listen, msgs => {
+      console.log(msgs);
+      this.outputs = buildOutputs(msgs);
+    });
   },
   methods: {
     // onTextChange: function() {

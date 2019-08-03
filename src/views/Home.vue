@@ -56,7 +56,7 @@ export default {
     viewContent(title, query, from) {
       console.log(title);
       console.log(query);
-      this.$router.push("/q/" + title + "/" + query + "/" + from);
+      this.$router.push("/q/" + encodeURIComponent(title) + "/" + query + "/" + from);
     }
   },
   data() {
