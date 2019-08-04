@@ -9,8 +9,10 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
+    "prismjs": "^1.17.1",
     "vue": "^2.6.10",
     "vue-money-button": "^0.2.3",
+    "vue-prism-editor": "^0.3.0",
     "vue-router": "^3.0.3",
     "vuetify": "^1.5.5"
   },

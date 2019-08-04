@@ -8,7 +8,11 @@
     <v-layout wrap>
       <ul v-for="(item, index) in wholeResponse" :key="index" mb-4>
         <li>
-          <v-btn style="text-transform: none;" @click="viewContent(item.title, item.query, item.from)" text>{{item.title}}</v-btn>
+          <v-btn
+            style="text-transform: none;"
+            @click="viewContent(item.title, item.query, item.from)"
+            text
+          >{{item.title}}</v-btn>
         </li>
       </ul>
     </v-layout>
@@ -20,7 +24,10 @@ const QUERY = {
   v: 3,
   q: {
     find: {
-      "out.s1": "1JowLDneqk8nMcHhQ6xaJMmo11izSYpxjt",
+      $or: [
+        { "out.s1": "1JowLDneqk8nMcHhQ6xaJMmo11izSYpxjt" },
+        { "out.s2": "1JowLDneqk8nMcHhQ6xaJMmo11izSYpxjt" }
+      ],
       "out.e.a": "1HWbpbCZHTBJmZxjFAmfHqgNjbEePkMqTW"
     },
     limit: 100,
@@ -31,7 +38,8 @@ const QUERY = {
     }
   },
   r: {
-    f: "[.[] | {title: .out[0].s2, query: .out[0].s3, from: .in[0].e.a} ]"
+    f:
+      '[.[] | if .out[0].s1=="1JowLDneqk8nMcHhQ6xaJMmo11izSYpxjt" then {title: .out[0].s2, query: (.out[0].s3 + .out[0].ls3), from: .in[0].e.a} else {title: .out[0].s3, query: (.out[0].s4 + .out[0].ls4), from: .in[0].e.a} end]'
   }
 };
 
@@ -56,7 +64,9 @@ export default {
     viewContent(title, query, from) {
       console.log(title);
       console.log(query);
-      this.$router.push("/q/" + encodeURIComponent(title) + "/" + query + "/" + from);
+      this.$router.push(
+        "/q/" + encodeURIComponent(title) + "/" + query + "/" + from
+      );
     }
   },
   data() {
@@ -79,6 +89,7 @@ export default {
 <style lang="scss" scoped>
 .v-progress-circular {
   margin: 1rem;
+  color: #7fcbc4;
 }
 
 pre {

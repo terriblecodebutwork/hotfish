@@ -19,7 +19,7 @@
               :rules="[rules.required, rules.counter]"
               counter
               @input="onNameChange"
-              maxlength="40"
+              :maxlength="MaxTitle"
               label="name of your bitquery"
               placeholder="e.g. 10 latest transactions"
             ></v-text-field>
@@ -65,15 +65,18 @@ const decodeApiEndpoint = str => {
   }
 };
 
+const MaxTitle = 100
+
 export default {
   data: () => {
     return {
+      MaxTitle: MaxTitle,
       name: "",
       url: "",
       apiData: { queryJson: "Think, share, and earn." },
       rules: {
         required: value => !!value || "Required.",
-        counter: value => value.length <= 40 || "Max 40 characters",
+        counter: value => value.length <= MaxTitle || `Max ${MaxTitle} characters`,
         isApiEndpoint: value =>
           !!decodeApiEndpoint(value) || "Not a valid bitquery API endoint url."
       }

@@ -18,8 +18,8 @@ const buildOutputs = msgs => {
   msgs2.unshift(
     Buffer.from("1JowLDneqk8nMcHhQ6xaJMmo11izSYpxjt").toString("hex")
   );
-  // msgs2.unshift("OP_0 OP_RETURN");
-  msgs2.unshift("OP_RETURN");
+  msgs2.unshift("0 OP_RETURN");
+  // msgs2.unshift("OP_RETURN");
   console.log(msgs2);
   return [
     {
