@@ -34,11 +34,7 @@
               </v-card-title>
             </v-card>
           </v-flex>
-          <Poster
-            v-if="!!name"
-            label="POST"
-            listen="postParams"
-          />
+          <Poster v-if="!!name" label="POST" listen="postParams" />
         </v-layout>
       </v-container>
     </v-card>
@@ -47,7 +43,7 @@
 
 <script>
 import Poster from "@/components/Poster.vue";
-import { Base64 } from '@/util.js'
+import { Base64 } from "@/util.js";
 
 const decodeApiEndpoint = str => {
   try {
@@ -65,7 +61,9 @@ const decodeApiEndpoint = str => {
   }
 };
 
-const MaxTitle = 100
+const MaxTitle = 100;
+
+const Slogan = "Think, share, and earn.";
 
 export default {
   data: () => {
@@ -73,10 +71,11 @@ export default {
       MaxTitle: MaxTitle,
       name: "",
       url: "",
-      apiData: { queryJson: "Think, share, and earn." },
+      apiData: { queryJson: Slogan },
       rules: {
         required: value => !!value || "Required.",
-        counter: value => value.length <= MaxTitle || `Max ${MaxTitle} characters`,
+        counter: value =>
+          value.length <= MaxTitle || `Max ${MaxTitle} characters`,
         isApiEndpoint: value =>
           !!decodeApiEndpoint(value) || "Not a valid bitquery API endoint url."
       }
@@ -86,12 +85,14 @@ export default {
     onApiEndpointChange: function() {
       let data = decodeApiEndpoint(this.url);
       this.apiData = data;
-      let msgs = [this.name, Base64(JSON.stringify(this.apiData.queryJson))]
+      let msgs = [this.name, Base64(JSON.stringify(this.apiData.queryJson))];
       this.$root.$emit("postParams", msgs);
     },
     onNameChange: function() {
-      let msgs = [this.name, Base64(JSON.stringify(this.apiData.queryJson))]
-      this.$root.$emit("postParams", msgs);
+      if (this.apiData.queryJson !== Slogan) {
+        let msgs = [this.name, Base64(JSON.stringify(this.apiData.queryJson))];
+        this.$root.$emit("postParams", msgs);
+      }
     }
   },
   components: {

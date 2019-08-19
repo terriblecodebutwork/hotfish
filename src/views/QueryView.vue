@@ -7,7 +7,7 @@
             <v-card color="teal lighten-3" class="white--text">
               <h2>{{title}}</h2>
             </v-card>
-            <prism-editor readonly=true :code="json_query" language="js"></prism-editor>
+            <prism-editor readonly :code="json_query" language="js"></prism-editor>
           </v-flex>
           <div>
             <strong>run query at planaria nodes:</strong>
@@ -16,7 +16,13 @@
                 <a
                   target="_blank"
                   :href="'https://genesis.bitdb.network/query/1FnauZ9aUH2Bex6JzdcV4eNX7oLSSEbxtN/' + b64query"
-                >Genesis</a>
+                ><v-btn>Genesis</v-btn></a>
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  :href="'https://bob.planaria.network/query/1GgmC7Cg782YtQ6R9QkM58voyWeQJmJJzG/' + b64query"
+                ><v-btn>Bob</v-btn></a>
               </li>
             </ul>
           </div>
@@ -34,7 +40,7 @@
 <script>
 import MoneyButton from "vue-money-button";
 import { Fee, Satoshi, FeeToDev } from "@/util.js";
-import PrismEditor from 'vue-prism-editor'
+import PrismEditor from "vue-prism-editor";
 
 export default {
   data: () => {
