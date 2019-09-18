@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import PostView from './views/PostView.vue'
 import QueryView from './views/QueryView.vue'
 import MetaView from './views/MetaView.vue'
+import NewsView from './views/NewsView.vue'
 
 Vue.use(Router)
 
@@ -22,6 +23,17 @@ export default new Router({
       component: PostView
     },
     {
+      path: "/postNews",
+      name: 'postNews',
+      component: MetaView
+    },
+    {
+      path: "/news",
+      name: 'news',
+      props: true,
+      component: NewsView
+    },
+    {
       path: "/q/:title/:query/:from",
       name: 'query',
       props: true,
@@ -34,12 +46,6 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    },
-    {
-      path: '/meta/:txid',
-      name: 'meta view',
-      props: true,
-      component: MetaView
     }
   ]
 })

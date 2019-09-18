@@ -8,11 +8,11 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
 
-      <router-link to="/meta/66094e053724980819aa2e1010549a7161c33394c8f86b5e03b979c5b3856297">
-        <v-btn color="grey darken-3">META</v-btn>
+      <router-link to="/news">
+        <v-btn color="grey darken-3">BSV NEWS</v-btn>
       </router-link>
       <router-link to="/post">
-        <v-btn color="grey darken-3">POST</v-btn>
+        <v-btn color="grey darken-3">POST QUERY</v-btn>
       </router-link>
     </v-toolbar>
 
