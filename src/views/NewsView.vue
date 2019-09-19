@@ -1,24 +1,43 @@
 <template>
   <v-app>
-    <router-link to="/postNews">
-      <v-btn color="grey">submit news</v-btn>
-    </router-link>
-    <v-container v-if="loading">
-      <div class="text-xs-center">
-        <v-progress-circular indeterminate :size="150" :width="8" teal></v-progress-circular>
-      </div>
-    </v-container>
-    <v-container v-else grid-list-xl>
-      <v-layout wrap>
-        <ul v-for="(item, index) in wholeResponse" :key="index" mb-4>
-          <li>
-            <a :href="'https://bico.media/' + item.txid">
-              <v-btn style="text-transform: none;" text>{{item}}</v-btn>
-            </a>
-          </li>
-        </ul>
-      </v-layout>
-    </v-container>
+    <v-card>
+      <router-link to="/postNews">
+        <v-btn fixed
+              dark
+              fab
+              right
+              bottom
+              color="pink"
+              class="white--text"><v-icon>add</v-icon></v-btn>
+      </router-link>
+      <v-container v-if="loading">
+        <div class="text-xs-center">
+          <v-progress-circular indeterminate :size="150" :width="8" teal></v-progress-circular>
+        </div>
+      </v-container>
+      <v-container v-else fluid grid-list-lg>
+        <v-layout row wrap v-for="(item, index) in wholeResponse" :key="index" mb-4>
+          <v-flex xs12>
+            <v-card color="teal lighten-3" class="white--text">
+              <v-card-title primary-title>
+                <div>
+                  <div class="headline">{{item.title}}</div>
+                  <span>from: {{item.name}}(MB: {{item.uid}})</span>
+                </div>
+              </v-card-title>
+              <v-card-actions>
+                <a :href="'https://bico.media/' + item.txid">
+                  <v-btn flat dark>Look</v-btn>
+                </a>
+                <a>
+                  <v-btn flat dark>Comment</v-btn>
+                </a>
+              </v-card-actions>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-card>
   </v-app>
 </template>
 
@@ -140,7 +159,7 @@ export default {
     getMetanetData(QUERY)
       .then(data => {
         console.log(data);
-        this.wholeResponse = data;
+        this.wholeResponse = data.reverse();
         this.loading = false;
       })
       .catch(err => console.log(err));
