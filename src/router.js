@@ -5,6 +5,7 @@ import PostView from './views/PostView.vue'
 import QueryView from './views/QueryView.vue'
 import MetaView from './views/MetaView.vue'
 import NewsView from './views/NewsView.vue'
+import PostCommentView from './views/PostCommentView.vue'
 
 Vue.use(Router)
 
@@ -26,6 +27,18 @@ export default new Router({
       path: "/postNews",
       name: 'postNews',
       component: MetaView
+    },
+    // {
+    //   path: "/showNews/:id",
+    //   name: 'showNews',
+    //   props: true,
+    //   component: ShowNewsView
+    // },
+    {
+      path: "/postComment/:id",
+      name: 'postComment',
+      props: true,
+      component: PostCommentView
     },
     {
       path: "/news",

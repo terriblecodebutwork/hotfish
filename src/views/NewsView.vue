@@ -29,9 +29,9 @@
                 <a :href="'https://bico.media/' + item.txid">
                   <v-btn flat dark>Look</v-btn>
                 </a>
-                <a>
+                <router-link :to="'/postComment/' + item.nodeTxid">
                   <v-btn flat dark>Comment</v-btn>
-                </a>
+                </router-link>
               </v-card-actions>
             </v-card>
           </v-flex>
@@ -139,7 +139,8 @@ async function getMetanetData(query) {
         uid: json.mb_uid,
         name: json.mb_username,
         title: content.p1,
-        txid: content.p2
+        txid: content.p2,
+        nodeTxid: json.txid,
       };
     })
   );

@@ -1,24 +1,16 @@
 <template>
   <div>
     <v-card>
+      <v-card-title>Comment to {{id}}</v-card-title>
+
       <v-container fluid grid-list-lg>
         <v-layout row wrap>
           <v-flex xs12 sm12 md12>
             <v-text-field
-              v-model="title"
+              v-model="comment"
               @input="onContentChange"
-              :rules="[rules.required,  rules.titleCounter]"
-              label="title"
-              placeholder
-            ></v-text-field>
-          </v-flex>
-
-          <v-flex xs12 sm12 md12>
-            <v-text-field
-              v-model="txid"
-              @input="onContentChange"
-              :rules="[rules.required,  rules.txidCounter]"
-              label="txid"
+              :rules="[rules.required,  rules.commentCounter]"
+              label="comment"
               placeholder
             ></v-text-field>
           </v-flex>
@@ -48,8 +40,9 @@ const FEE = {
 };
 
 const buildOutputs = data => {
+  console.log(data)
   let hexData = data.map(x => Buffer.from(x).toString("hex"));
-  hexData.unshift(Buffer.from("MetaNetBsvNewsV1").toString("hex"));
+  hexData.unshift(Buffer.from("MetaNetBsvNewsCo").toString("hex"));
   hexData.unshift("0 OP_RETURN");
 
   console.log(hexData);
@@ -65,24 +58,23 @@ const buildOutputs = data => {
 };
 
 export default {
+  props: ["id"],
   data: () => {
     return {
-      label: "submit",
+      label: "comment",
       MaxContent: MaxContent,
-      title: "",
-      txid: "",
+      comment: "",
       rules: {
         required: value => !!value || "Required.",
-        txidCounter: value => value.length == 64 || `please enter a valid txid`,
-        titleCounter: value =>
-          value.length <= 80 || `${value.length - 80} too long`
+        commentCounter: value =>
+          value.length <= 256 || `${value.length - 256} too long`
       },
       outputs: [FEE]
     };
   },
   methods: {
     onContentChange: function() {
-      let data = [this.title, this.txid];
+      let data = [this.id, this.comment];
       this.outputs = buildOutputs(data);
     }
   },
