@@ -6,6 +6,7 @@ import Vuetify from 'vuetify/lib';
 import 'vuetify/dist/vuetify.min.css'
 import "prismjs";
 import "prismjs/themes/prism.css";
+import "./registerServiceWorker"
 
 Vue.config.productionTip = false
 
