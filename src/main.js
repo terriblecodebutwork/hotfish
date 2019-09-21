@@ -8,7 +8,7 @@ import "prismjs";
 import "prismjs/themes/prism.css";
 import "./registerServiceWorker"
 
-Vue.config.productionTip = false
+Vue.config.productionTip = true
 
 Vue.use(Vuetify)
 
