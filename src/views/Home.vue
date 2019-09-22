@@ -21,30 +21,31 @@
 
 <script>
 const QUERY = {
-  v: 3,
-  q: {
-    find: {
-      $or: [
-        { "out.s1": "1JowLDneqk8nMcHhQ6xaJMmo11izSYpxjt" },
-        { "out.s2": "1JowLDneqk8nMcHhQ6xaJMmo11izSYpxjt" }
-      ],
+  "v": 3,
+  "q": {
+    "find": {
+      "out.tape.cell": {
+        "$elemMatch": {
+          "i": 0,
+          "s": "1JowLDneqk8nMcHhQ6xaJMmo11izSYpxjt"
+        }
+      },
       "out.e.a": "1HWbpbCZHTBJmZxjFAmfHqgNjbEePkMqTW"
     },
-    limit: 100,
-    project: {
+    "limit": 100,
+    "project": {
       "tx.h": 1,
-      out: 1,
-      in: 1
+      "out.tape.cell": 1,
+      "in": 1
     }
   },
-  r: {
-    f:
-      '[.[] | if .out[0].s1=="1JowLDneqk8nMcHhQ6xaJMmo11izSYpxjt" then {title: .out[0].s2, query: (.out[0].s3 + .out[0].ls3), from: .in[0].e.a} else {title: .out[0].s3, query: (.out[0].s4 + .out[0].ls4), from: .in[0].e.a} end]'
+  "r": {
+    "f": "[.[] | {title: .out[0].tape[1].cell[1].s, query: (.out[0].tape[1].cell[2].s + .out[0].tape[1].cell[2].ls), from: .in[0].e.a} ]"
   }
 };
 
 const api =
-  "https://genesis.bitdb.network/q/1FnauZ9aUH2Bex6JzdcV4eNX7oLSSEbxtN/";
+  "https://bob.planaria.network/q/1GgmC7Cg782YtQ6R9QkM58voyWeQJmJJzG/";
 
 async function getMetanetData(query) {
   let str = JSON.stringify(query);

@@ -23,6 +23,13 @@ module.exports = {
                     options: {
                         cacheName: 'mom'
                     }
+                },
+                {
+                    urlPattern: new RegExp(`^https://bob.planaria.network/`),
+                    handler: "staleWhileRevalidate",
+                    options: {
+                        cacheName: 'bob'
+                    }
                 }]
         }
     }
