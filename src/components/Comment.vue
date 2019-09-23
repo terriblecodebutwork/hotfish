@@ -8,12 +8,12 @@
 
     <div v-show="open">
       <div v-html="content" class="content"></div>
-      <ul class="list-unstyled child-padding">
-        <comment v-for="c in comments" :comment="c" :key="c" />
-      </ul>
       <router-link :to="'/postComment/' + metadata.txid">
         <p>reply</p>
       </router-link>
+      <ul class="list-unstyled child-padding">
+        <comment v-for="c in comments" :comment="c" :key="c" />
+      </ul>
     </div>
   </li>
 </template>
