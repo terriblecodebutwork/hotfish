@@ -76,7 +76,6 @@ export default {
         this.wholeResponse = data.reverse();
         this.loading = false;
       })
-      .catch(err => console.log(err));
   }
 };
 </script>

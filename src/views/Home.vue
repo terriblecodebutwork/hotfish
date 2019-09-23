@@ -92,7 +92,6 @@ export default {
         this.wholeResponse = data;
         this.loading = false;
       })
-      .catch(err => console.log(err));
   }
 };
 </script>
