@@ -5,6 +5,15 @@
     </div>
   </v-container>
   <v-container v-else grid-list-xl>
+    <router-link to="/post">
+        <v-btn fixed
+              dark
+              fab
+              right
+              bottom
+              color="pink"
+              class="white--text"><v-icon>add</v-icon></v-btn>
+      </router-link>
     <v-layout wrap>
       <ul v-for="(item, index) in wholeResponse" :key="index" mb-4>
         <li>

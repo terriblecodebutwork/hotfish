@@ -8,7 +8,7 @@ module.exports = {
             runtimeCaching: [
                 {
                     urlPattern: new RegExp('.(?:html|js|css)$'),
-                    handler: 'staleWhileRevalidate'
+                    handler: 'networkFirst'
                 },
                 {
                     urlPattern: new RegExp('^https://genesis.bitdb.network/'),

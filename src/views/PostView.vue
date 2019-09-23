@@ -3,15 +3,6 @@
     <v-card>
       <v-container fluid grid-list-lg>
         <v-layout row wrap>
-          <v-flex xs12 sm12 md12>
-            <v-text-field
-              v-model="url"
-              @change="onApiEndpointChange"
-              :rules="[rules.required, rules.isApiEndpoint]"
-              label="API endpoint of your bitquery"
-              placeholder="e.g. https://genesis.bitdb.network/q/1FnauZ9aUH2Bex6JzdcV4eNX7oLSSEbxtN/ewogICJ2IjogMywKICAicSI6IHsKICAgICJmaW5kIjoge30sCiAgICAibGltaXQiOiAxMAogIH0KfQ=="
-            ></v-text-field>
-          </v-flex>
 
           <v-flex xs12 sm6 md3>
             <v-text-field
@@ -22,6 +13,16 @@
               :maxlength="MaxTitle"
               label="name of your bitquery"
               placeholder="e.g. 10 latest transactions"
+            ></v-text-field>
+          </v-flex>
+
+          <v-flex xs12 sm12 md12>
+            <v-text-field
+              v-model="url"
+              @change="onApiEndpointChange"
+              :rules="[rules.required, rules.isApiEndpoint]"
+              label="API endpoint of your bitquery"
+              placeholder="e.g. https://genesis.bitdb.network/q/1FnauZ9aUH2Bex6JzdcV4eNX7oLSSEbxtN/ewogICJ2IjogMywKICAicSI6IHsKICAgICJmaW5kIjoge30sCiAgICAibGltaXQiOiAxMAogIH0KfQ=="
             ></v-text-field>
           </v-flex>
 

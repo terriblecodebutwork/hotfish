@@ -9,10 +9,7 @@
       <v-spacer></v-spacer>
 
       <router-link to="/news">
-        <v-btn color="grey darken-3">BSV NEWS</v-btn>
-      </router-link>
-      <router-link to="/post">
-        <v-btn color="grey darken-3">POST QUERY</v-btn>
+        <v-btn color="blue lighten-1">BSV NEWS</v-btn>
       </router-link>
     </v-toolbar>
 
