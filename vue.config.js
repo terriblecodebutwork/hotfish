@@ -7,10 +7,6 @@ module.exports = {
         workboxOptions: {
             runtimeCaching: [
                 {
-                    urlPattern: new RegExp('.(?:html|js|css)$'),
-                    handler: 'networkFirst'
-                },
-                {
                     urlPattern: new RegExp('^https://genesis.bitdb.network/'),
                     handler: 'cacheFirst',
                     options: {
