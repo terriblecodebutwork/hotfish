@@ -19,14 +19,14 @@ module.exports = {
                 },
                 {
                     urlPattern: new RegExp(`^https://mom.planaria.network/`),
-                    handler: "staleWhileRevalidate",
+                    handler: "networkFirst",
                     options: {
                         cacheName: 'mom'
                     }
                 },
                 {
                     urlPattern: new RegExp(`^https://bob.planaria.network/`),
-                    handler: "staleWhileRevalidate",
+                    handler: "networkFirst",
                     options: {
                         cacheName: 'bob'
                     }
