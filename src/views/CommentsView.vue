@@ -3,7 +3,7 @@
     <v-card>
       <v-card-title>
         Comments of &nbsp;
-        <a :href="'https://bico.media/' + res">{{res}}</a>
+        <a :href="'https://bico.media/' + res">this news.</a>
       </v-card-title>
       <v-card-actions>
         <router-link :to="'/postComment/' + nodeName">
