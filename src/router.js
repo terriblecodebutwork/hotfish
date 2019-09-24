@@ -30,7 +30,7 @@ export default new Router({
       component: MetaView
     },
     {
-      path: "/comments/:id/:res",
+      path: "/comments/:nodeName/:res/:nodeTxid",
       name: 'listComments',
       props: true,
       component: CommentsView

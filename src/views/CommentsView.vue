@@ -6,7 +6,7 @@
         <a :href="'https://bico.media/' + res">{{res}}</a>
       </v-card-title>
       <v-card-actions>
-        <router-link :to="'/postComment/' + id">
+        <router-link :to="'/postComment/' + nodeName">
           <v-btn flat>New Comment</v-btn>
         </router-link>
       </v-card-actions>
@@ -29,14 +29,14 @@ async function getComments(txid) {
 }
 
 export default {
-  props: ["id", "res"],
+  props: ["nodeName", "res", "nodeTxid"],
   data: () => {
     return {
       comments: []
     };
   },
   mounted() {
-    getComments(this.id).then(comments => {
+    getComments(this.nodeTxid).then(comments => {
       this.comments = comments;
     });
   },

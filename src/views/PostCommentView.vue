@@ -1,8 +1,6 @@
 <template>
   <div>
     <v-card>
-      <v-card-title>Comment to {{id}}</v-card-title>
-
       <v-container fluid grid-list-lg>
         <v-layout row wrap>
           <v-flex xs12 sm12 md12>
