@@ -59,7 +59,7 @@ async function getChildrenOfTxid(txid) {
             find: {
                 "tx.h": txid
             },
-            limit: 100,
+            limit: 20,
             project: {
                 "child.tx": 1
             }

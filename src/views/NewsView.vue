@@ -19,7 +19,9 @@
                 <a :href="'https://bico.media/' + item.txid" class="headline">{{item.title}}</a>
               </div>
               <span>from: {{item.name}}(MB: {{item.uid}})</span>
-              <router-link :to="'/comments/' + item.nodeName + '/' + item.txid + '/' + item.nodeTxid">
+              <router-link
+                :to="'/comments/' + item.nodeName + '/' + item.txid + '/' + item.nodeTxid"
+              >
                 <p>comments</p>
               </router-link>
             </div>
@@ -46,19 +48,23 @@ async function getMetanetData() {
   );
   let stories = await Promise.all(
     rawStories.map(async function(x) {
-      let metadata = JSON.parse(x.metadata);
-      let content = await getUserData(metadata.txid);
-      return {
-        uid: metadata.mb_uid,
-        name: metadata.mb_username,
-        title: content.p1,
-        txid: content.p2,
-        nodeName: metadata.txid,
-        nodeTxid: x.nodeTxid
-      };
+      if (x.metadata) {
+        let metadata = JSON.parse(x.metadata);
+        let content = await getUserData(metadata.txid);
+        return {
+          uid: metadata.mb_uid,
+          name: metadata.mb_username,
+          title: content.p1,
+          txid: content.p2,
+          nodeName: metadata.txid,
+          nodeTxid: x.nodeTxid
+        };
+      } else {
+        return false;
+      }
     })
   );
-  return stories;
+  return stories.filter((x) => x);
 }
 
 export default {
@@ -71,12 +77,11 @@ export default {
     };
   },
   mounted() {
-    getMetanetData()
-      .then(data => {
-        console.log(data);
-        this.wholeResponse = data.reverse();
-        this.loading = false;
-      })
+    getMetanetData().then(data => {
+      console.log(data);
+      this.wholeResponse = data.reverse();
+      this.loading = false;
+    });
   }
 };
 </script>
